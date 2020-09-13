@@ -1,44 +1,33 @@
 {
-  "author": "Mathieu Pillard",
-
+  "author": "Viktar Patotski",
   "background": {
     "scripts": [
       "main.js"
     ]
   },
-
   "browser_specific_settings": {
     "gecko": {
       "id": "close-tabs-by-pattern@virgule.net",
       "strict_min_version": "57.0"
     }
   },
-
   "browser_action": {
     "browser_style": true,
-    "default_icon": "icon.svg",
-    "default_title": "Close Tabs By Pattern"
+    "default_icon": "close-tab.svg",
+    "default_title": "Tabs Cleaner"
   },
-
   "description": "Automatically close tabs whose URL match specific patterns",
-
   "homepage_url": "https://github.com/diox/close-tabs-by-pattern/",
-
   "manifest_version": 2,
-
-  "name": "Close Tabs By Pattern",
-
+  "name": "Tabs Cleaner",
   "options_ui": {
     "browser_style": true,
     "page": "options.html"
   },
-
-
   "permissions": [
     "<all_urls>",
     "storage",
     "tabs"
   ],
-
-  "version": "0.2"
+  "version": "0.1"
 }

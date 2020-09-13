@@ -4,13 +4,13 @@ const { storage } = browser;
  * Init options page callback.
  */
 function init() {
-  const patternsTextArea = document.querySelector("#patterns");
+  const patternsTextArea = document.getElementById("patterns");
   setOptionsFromStorage(patternsTextArea);
   patternsTextArea.addEventListener("change", setPatternsInStorageFromOptions);
 }
 
 /**
- * Update options page from data in storage.
+ * Load from storage.
  */
 async function setOptionsFromStorage(patternsTextArea) {
   const settings = await storage.sync.get();
@@ -18,10 +18,9 @@ async function setOptionsFromStorage(patternsTextArea) {
 }
 
 /**
- * Update patterns in storage from data entered in the options page.
  *
- * Called from addEventListerned bound to the patternsTextArea, so 'this'
- * should represent the textarea.
+ * Store patterns from options page to storage.
+ *
  */
 function setPatternsInStorageFromOptions() {
   const patterns = this.value.split("\n");

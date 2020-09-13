@@ -1,10 +1,20 @@
-const { browserAction, storage, tabs } = browser;
+const {browserAction, storage, tabs} = browser;
 
 /**
- * Init background script callback.
+ * Init extention by assigning onClicked to Icon.
  */
 function init() {
   browserAction.onClicked.addListener(closeTabsByPattern);
+}
+
+function closeTabs(tabsToClose) {
+  for (let tab of tabsToClose) {
+    tabs.remove(tab.id);
+  }
+}
+
+function onTabsQueryError(error) {
+  console.log(`Error: ${error}`);
 }
 
 /**
@@ -14,10 +24,7 @@ function init() {
 async function closeTabsByPattern() {
   const settings = await storage.sync.get();
   if (settings.patterns) {
-    const tabsToClose = await tabs.query({pinned: false, url: settings.patterns});
-    for (let tab of tabsToClose) {
-      tabs.remove(tab.id);
-    }
+    tabs.query({pinned: false, url: settings.patterns}).then(closeTabs, onTabsQueryError);
   }
 }
 
